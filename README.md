@@ -1,6 +1,6 @@
 # Arthas Manager
 
-一款基于 Node.js + TypeScript 的命令行工具，用于通过 SSH 管理阿里巴巴 Arthas Java 诊断工具，并提供 AI 驱动的性能分析能力。
+一款基于 Node.js + TypeScript 的命令行工具，用于通过 SSH 管理阿里巴巴 Arthas Java 诊断工具。
 
 ## 功能特性
 
@@ -8,7 +8,6 @@
 - **Java 进程发现**：通过 jps 列出和识别 Java 进程
 - **Arthas 集成**：将 Arthas 附加到任意 Java 进程进行诊断
 - **实时诊断**：执行 Arthas 命令（dashboard、thread、memory、gc 等）
-- **AI 驱动的分析**：使用 AI 分析性能并提供优化建议
 - **REST API**：通过 HTTP API 暴露 Arthas 功能，支持 GET/POST 方式调用
 
 ## 安装
@@ -83,20 +82,6 @@ npm start -- server --port 8080
 | `arthas stop <session>` | 停止会话 |
 | `arthas commands` | 显示可用命令 |
 
-### AI 命令
-
-| 命令 | 描述 |
-|---------|-------------|
-| `ai configure` | 配置 AI 服务 |
-| `ai analyze <session> [question]` | AI 性能分析 |
-| `ai chat <session>` | 交互式 AI 对话 |
-
-### 服务器命令
-
-| 命令 | 描述 |
-|---------|-------------|
-| `server -h <host> -p <port>` | 启动 API 服务器 |
-
 ## REST API
 
 启动服务器后可通过以下接口调用：
@@ -145,20 +130,6 @@ curl -X POST http://localhost:8080/exec \
 | 查看 GC | `http://localhost:8080/exec?sessionId=my-server-1785&command=gcutil` |
 | 查看 JVM | `http://localhost:8080/exec?sessionId=my-server-1785&command=jvm` |
 | 最繁忙线程 | `http://localhost:8080/exec?sessionId=my-server-1785&command=thread -n 5` |
-
-## 配置
-
-### AI 配置
-
-```bash
-npm start -- ai configure
-```
-
-支持的 AI 服务：
-- OpenAI (GPT-4, GPT-3.5)
-- Anthropic (Claude)
-- Ollama (本地模型)
-- DeepSeek
 
 ## 常用 Arthas 命令
 
